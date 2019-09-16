@@ -1,0 +1,12 @@
+footer.foot
+    .top
+        .about
+            -let names = ["About Us","Blog","iOS App","Android App"]
+            for val in names
+                a=val
+        .social
+            -let logos = ["fab fa-twitter","fab fa-facebook-square","fab fa-instagram","fab fa-snapchat-square"]
+            for val in logos
+                i(class=val)
+    .copy
+        p Copyright &copy 2019 Omnifood.All rights reserved.

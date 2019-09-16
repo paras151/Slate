@@ -1,0 +1,17 @@
+#navbar
+    .list(style='list-style: none;')
+      li
+        a(href='/home' style='text-decoration:none') Home
+      li
+        a(href='#main' style='text-decoration:none') About
+      li
+        a(href='/plans' style='text-decoration:none') Services
+      if userObj
+        li
+          a(href='#' id="logout" style='text-decoration:none') Log Out
+          a(href = "/me")
+            img(src="./src/p1.jpeg")
+      else
+        li
+          a(href='http://localhost:3000/login' style='text-decoration:none') Log In
+  

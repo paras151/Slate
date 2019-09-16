@@ -1,0 +1,43 @@
+extend base
+block content
+    include nav
+    .offer-head
+            h2 START EATING HEALTHY TODAY
+            h4 aaaaaaaaaaaaaa
+            .offers
+                for plan in userPlans
+                    .meal
+                        .det1
+                            h5 #{plan.name}
+                            .price
+                                #{plan.price} 
+                                p / month
+                            div That&apos;s only $13 per meal
+                        br
+                        hr
+                        br
+                        .det
+                            i.fas.fa-check-circle
+                            p 1 meal everyday
+                        br
+                        .det
+                            i.fas.fa-check-circle
+                            p Order 24/7
+                        br
+                        .det
+                            i.fas.fa-check-circle
+                            p Duration : #{plan.duration} days
+                        br
+                        .det
+                            i.fas.fa-check-circle
+                            p Average Rating : #{plan.ratingsAverage}
+                        br
+                        hr
+                        // <br>
+                        br
+                        br
+                        a.but(style='text-decoration: none' href='#') Sign Up Now
+                        
+                        
+                    
+                        

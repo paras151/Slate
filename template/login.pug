@@ -1,0 +1,18 @@
+extend base
+block content
+    include nav
+    .main.container
+        .row
+        .col-md-6.col-md-offset-3
+            h1.display-4.m-b-2 Login
+
+            // register form
+            form.login-Page
+                div.form-group
+                    label(for='email') Email:
+                    input#email.form-control(type='email', placeholder='name@email.com' name='email')
+                div.form-group
+                    label(for='pw') Password:
+                    input#pw.form-control(type='password' name='password')
+                button.btn.btn-primary(type='submit') Login
+                a.btn(href="http://localhost:3000/signup") Don't have an account SignUp

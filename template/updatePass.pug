@@ -1,0 +1,20 @@
+extend base
+block content
+    include nav
+    .main.container
+        .row
+        .col-md-6.col-md-offset-3
+            h1.display-4.m-b-2 Login
+
+            // register form
+            form#pass
+                div.form-group
+                    label(for='email') Current Password:
+                    input#currPass.form-control(type='password' name='currPass')
+                div.form-group
+                    label(for='email') New Password:
+                    input#newPass.form-control(type='password' name='newPass')
+                div.form-group
+                    label(for='pw') Confirm Password:
+                    input#conPass.form-control(type='password' name='conPass')
+                button.btn.btn-primary(type='submit') Update
