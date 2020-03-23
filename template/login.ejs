@@ -1,0 +1,135 @@
+<html>
+
+<head>
+  <title>Log In</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+  <link rel="stylesheet" href="./css/query.css">
+  <link rel="stylesheet" href="./css/style.css">
+
+  <style type=text/css media='screen'>
+body{
+	background-color: #4cddc0;
+}
+.login_div{
+	box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	background-color: #1a495b;
+	width: 80%;
+	height: auto;
+	margin-top: 4%;
+	border-radius: 10px;
+}
+#header_para{
+	padding-top: 10%;
+	font-size: 150%;
+	color: #4cddc0;
+	margin-bottom: 0;
+}
+#card{
+	font-family:'Raleway', sans-serif;
+	opacity: .7;
+	font-size: 200%;
+}
+#hr1{
+	border-radius: 4px;
+	width: 1.5%;
+	height: 4px;
+	background-color:#4cddc0;
+	border: none;
+	display: inline-block;
+	margin-left: 6%; 
+}
+#hr2{
+	border-radius: 4px;
+	width: 5.5%;
+	height: 4px;
+	background-color:#4cddc0;
+	border: none;
+	display: inline-block; 
+}
+.input_style:focus{width:80% !important}
+.input_style{
+	-webkit-transition:width 0.4s ease-in-out;transition:width 0.4s ease-in-out;
+	width: 50%;
+	height: 40px;
+	background-color: black;
+	outline: none;
+	border: none;
+	border-radius: 20px;
+	padding-left: 10px;
+	color: #4cddc0;
+}
+#login_button{
+	box-shadow: 0 8px 60px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	width: 200px;
+	height: 40px;
+	border-radius: 10px;
+	border: none;
+	margin-bottom: 10%;
+	outline: none;
+	background-color: #4cddc0;
+	transition: 400ms ease-in-out; 
+}
+#login_button:hover{
+	background-color: #1a495b;
+	color: white;
+}
+#forgot a{
+	font-size: 120%;
+	color: white;
+} 
+h1{
+    font-size: 5rem;
+    letter-spacing: 1.5rem;
+}
+</style>
+</head>
+
+<body>
+
+<div id="navbar">
+    <div class="list" style="list-style: none;">
+      <li><a href="#" style="text-decoration:none">Home</a></li>
+      <li><a href="#" style="text-decoration:none">Services</a></li>
+      <li><a href="#" style="text-decoration:none">Sign Up</a></li>
+      <% if(userObj) {%>
+      <li>
+        <a href='#' id="logout" style='text-decoration:none'>Log Out</a> 
+        <a href = "/me">
+          <img src="./src/p1.jpeg">
+        </a>
+    </li>
+    <% } else { %>
+          <li>
+        <a href='https://localhost:3000/login' id="logout" style='text-decoration:none'>Log Out</a></li>
+        <% } %>
+
+    </div>
+    
+
+  </div>
+  <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+  <center>
+      <h1>SLATE</h1>
+    <div class="login_div">
+      <hr id="hr1" />&nbsp
+      <hr id="hr2" /><br /><br /><br />
+      <form class="login-Page" action="">
+        <input id="email" type="email" name="email" placeholder="username" required class="input_style w3-animate-right"><br /><br />
+        <input id="pw" type="password" name="password" placeholder="password" required class="input_style w3-animate-left"><br /><br />
+        <input type="submit" name="submit_button" value="LOGIN" id="login_button" class="w3-animate-bottom"><br />
+      </form>
+    </div>
+  </center>
+  <script src="login.js"></script>
+</body>
+
+</html>

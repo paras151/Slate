@@ -1,0 +1,96 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>Home Page</title> 
+    <link href="https://fonts.googleapis.com/css?family=Baloo+2&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <link rel="stylesheet" href="./css/query.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <style type="text/css" media="screen">
+    html { font-size: 22px; }
+body { padding: 1rem; } 
+        .card {
+            
+  background-color: dodgerblue;
+  text-align: center;
+  font-family: 'Baloo 2', cursive;
+  color: white;
+  padding: 1rem;
+  height: 3rem;
+  border-radius: 1rem;
+}
+h1{
+    font-family: 'Baloo 2';
+}
+input{
+    font-family: 'Baloo 2';
+
+}
+button{
+    font-family: "Baloo 2";
+}
+.cards {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 1rem;
+}
+
+/* Screen larger than 600px? 2 column */
+@media (min-width: 600px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Screen larger than 900px? 3 columns */
+@media (min-width: 900px) {
+  .cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+    </style> 
+</head> 
+  
+<body> 
+    <div id="navbar">
+        <div class="list" style="list-style: none;">
+          <li><a href="#" style="text-decoration:none">Home</a></li>
+          <li><a href="#" style="text-decoration:none">Services</a></li>
+          <li><a href="#" style="text-decoration:none">Sign Up</a></li>
+          <% if(userObj) {%>
+          <li>
+            <a href='#' id="logout" style='text-decoration:none'>Log Out</a> 
+            <a href = "/me">
+              <img src="./src/p1.jpeg">
+            </a>
+        </li>
+        <% } else { %>
+              <li>
+            <a href='https://localhost:3000/login' id="logout" style='text-decoration:none'>Log Out</a></li>
+            <% } %>
+    
+        </div>
+      </div>
+      <br>
+    <br>
+    <br>
+    <br><br>
+   <h1>Create New Board</h1>
+    <button id="create-board">new board</button>
+    <input id="board-title" type="text" name="title">
+    <br>
+    <br>
+    <div class="cards">
+            <% userPlans.forEach((item)=>{%> 
+                <div class="card" data-plan-id="<%= item._id %>">
+            <%=item.title%>
+
+        </div>
+        
+
+            <%});%> 
+            
+    </div>
+    <script src="board.js"></script>
+</body> 
+  
+</html>
+ 

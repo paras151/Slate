@@ -11,7 +11,7 @@ const Email = require('../utility/email');
 
 var userLogin = async (req, res) => {
 	try {
-		console.log(req.body);
+		// console.log(req.body);
 
 		if (req.body.email == undefined || req.body.password == undefined) {
 			res.status(401).send('ENTER PROPERLY !!!');
@@ -37,10 +37,11 @@ var userLogin = async (req, res) => {
 		if (!proof) {
 			return res.end('Password is wrong');
 		}
+		
 		res.cookie('jwt', token, { httpOnly: 'true' });
 
 		let url = 'http://localhost:3000/me';
-		await new Email(result, url).sendWelcome();
+		// await new Email(result, url).sendWelcome();
 
 		res.status(201).json({
 			status: 'success',
@@ -84,21 +85,25 @@ var userSignup = async (req, res) => {
 
 var protectRoute = async (req, res, next) => {
 	var token;
+	console.log("haha")
 	try {
 		if (req.cookies.jwt) {
 			token = req.cookies.jwt;
 		} else {
-			res.end('user not logged in');
+			res.render("login.ejs")
+			
 		}
 		// console.log(token);
 		try {
 			var tokenMatch = jsonwebtoken.verify(token, 'Any random string');
 		} catch (err) {
 			if (!tokenMatch) {
+				console.log("wrong email or password")
+
 				var userPlans = await planModel.find();
 
 				userPlans = userPlans.slice(0, 3);
-				res.render('home', {
+				res.render('login.ejs', {
 					userPlans: userPlans,
 					title: req.url.slice(1),
 				});
@@ -108,14 +113,17 @@ var protectRoute = async (req, res, next) => {
 		console.log(err);
 	}
 
-	//console.log(tokenMatch.result)
+	// console.log(tokenMatch.result)
+	if(tokenMatch){
 	var id = new ObjectID(tokenMatch.result);
-	//console.log(id, typeof id)
+	// console.log(id, typeof id)
 	var user = await userModel.findById(tokenMatch.result);
 	if (user) {
 		res.locals.userObj = user;
 		req.headers.user = user;
+		// console.log(user)
 	} else res.end('user does not exist');
+}
 
 	next();
 };
@@ -126,19 +134,19 @@ var isLoggedIn = async (req, res, next) => {
 		if (req.cookies.jwt) {
 			token = req.cookies.jwt;
 
-			console.log(token);
+			// console.log(token);
 			var tokenMatch = jsonwebtoken.verify(token, 'Any random string');
-			console.log(tokenMatch);
+			// console.log(tokenMatch);
 
 			if (!tokenMatch) {
 				res.send('user not authenticated');
 				return next();
 			}
 		}
-		//console.log(tokenMatch.result)
 		var id = new ObjectID(tokenMatch.result);
-		//console.log(id, typeof id)
+		// console.log(id)
 		var user = await userModel.findById(tokenMatch.result);
+		// console.log(user)
 		if (!user) {
 			res.end('user does not exist');
 			return next();

@@ -1,9 +1,10 @@
-const stripe = Stripe('sk_test_MgFRWqSGP7RlXOY2Tn7fs1V900KzGb6WvH');
-
+console.log("loginnenw")
 
 const updateForm = document.querySelector('.update-profile');
 const form = document.querySelector('.login-Page');
 const signup = document.querySelector('.signup-Page');
+const bookingBtns = document.querySelectorAll('.book');
+console.log(bookingBtns)
 console.log(signup)
 const pass = document.getElementById('pass');
 console.log(pass)
@@ -11,7 +12,7 @@ console.log(pass)
 // import { assertExpressionStatement } from "babel-types";
 
 // import { assertExpressionStatement } from "babel-types";
-// console.log(form)
+console.log(form)
 
 if (form) {
 	form.addEventListener('submit', e => {
@@ -25,15 +26,15 @@ var email, password;
 
 const login = async (email, password) => {
 	try {
-
+		console.log(email)
 		const res = await axios.post('http://localhost:3000/api/users/login', {
 			email: email,
 			password: password,
 		});
-		// console.log(res.data);
+		console.log("kdscmk");
 
 		window.setTimeout(() => {
-			location.assign('/home');
+			location.assign('/plans');
 		}, 1000);
 	} catch (err) {
 		console.log(err);
@@ -128,16 +129,36 @@ signupfun = async function(email, password,confirmPassword){
 	})
 }
 
+if(bookingBtns)
+{
+	for(let i=0;i<bookingBtns.length;i++){
+		console.log(bookingBtns[i]);
 
-stripe.redirectToCheckout({
-	// Make the id field from the Checkout Session creation API response
-	// available to this file, so you can provide it as parameter here
-	// instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-	sessionId: res.data.session.id
-  }).then(function (result) {
-	// If `redirectToCheckout` fails due to a browser or network
-	// error, display the localized error message to your customer
-	// using `result.error.message`.
-  });
+		bookingBtns[i].addEventListener("click",e=>{
+			
+			console.log(e.target.dataset.planId)
+			bookPlan(e.target.dataset.planId)
+		})
+	}
+}
 
+
+
+  const bookPlan = async planId=>{
+	  try{
+		  const session = await axios.get(
+		  `http://localhost:3000/api/bookings/checkout-session/${planId}`
+		  );
+
+		  console.log(session);
+
+		  await stripe.redirectToCheckout({
+			  sessionId: session.data.id
+		  })
+		  
+	  }
+	  catch(err){
+		console.log(err)
+	}
+  }
 

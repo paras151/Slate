@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var validator = require('validator');
 var bcrypt = require('bcrypt');
 var crypto = require('crypto');
-var DB = "mongodb+srv://i_am_user:user@cluster0-lbubz.mongodb.net/test?retryWrites=true&w=majority";
+var DB = "mongodb+srv://paras:paras@cluster0-vnoia.mongodb.net/test?retryWrites=true&w=majority";
 mongoose.connect(DB,{
     useNewUrlParser: true
 })
@@ -36,6 +36,7 @@ const userSchema = new mongoose.Schema({
           default:"user",
           type:String
         },
+        boards:{type:Array},
         resetToken:String,
         expiresIn:Date
       

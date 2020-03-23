@@ -5,8 +5,9 @@ const {getAllPlans, getPlan, updatePlan, createPlan, deletePlan, getTop5} = requ
 const {protectRoute,authorize} = require('../controller/authController');
 plansRouter
    .route("/")
-   .get(protectRoute,authorize("admin","owner"),getAllPlans) 
-   .post(protectRoute,authorize("admin","owner"),createPlan);
+   .get(protectRoute,getAllPlans) 
+   .post(protectRoute,createPlan);
+   // .post(protectRoute,authorize("admin","owner"),createPlan);
 
 plansRouter
    .route("/top-5-plans")

@@ -5,6 +5,6 @@ let {protectRoute} = require("../controller/authController");
 
 let {getCheckout} = require("../controller/bookingController");
 
-bookingsRouter.route("/checkout-session/:id").get(protectRoute,getCheckout);
+bookingsRouter.route("/checkout-session/:id").get(getCheckout);
 
 module.exports = bookingsRouter;

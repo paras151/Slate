@@ -6,8 +6,9 @@ const rateLimit = require('express-rate-limit');
 const sanitizer = require('express-mongo-sanitize');
 const cookieParser = require('cookie-parser');
 
+var listsRouter = require("./router/listsRouter");
 
-
+var cardsRouter = require("./router/cardsRouter");
 var plansRouter = require("./router/plansRouter");
 var usersRouter = require("./router/usersRouter");
 var viewRouter = require("./router/viewRouter");
@@ -34,6 +35,8 @@ app.use(sanitizer());
 
 app.use("/api/plans",plansRouter);
 app.use("/api/users",usersRouter);
+app.use("/api/cards",cardsRouter);
+app.use("/api/lists",listsRouter);
 app.use("/api/bookings",bookingsRouter);
 app.use("",viewRouter)
 app.use(express.static(__dirname +'/public'));

@@ -1,8 +1,9 @@
 var express = require("express");
 // var mongoose = require("mongoose");
 
-var planModel = require("../model/planModel")
-
+var planModel = require("../model/planModel");
+var userModel = require("../model/userModel");
+var {isLoggedIn} = require('./authController');
 
 const getAllPlans = async (req,res)=>{
     try{
@@ -77,14 +78,19 @@ const getTop5 = (req,res,next)=>{
 }
 const getPlan = (req,res)=>{
     var id = req.params.id;
-    planModel.findById(id)
-    .then((d)=>{
-        res.send(d);
+    console.log(id)
+    planModel.findById(id).then((d)=>{
+        res.render("plan",{d:d});
     })
 }
 const createPlan = async (req,res)=>{
     try{
+        req.body.user=res.locals.userObj._id
+        // console.log(req.body)
     var result = await planModel.create(req.body);
+    var user = await userModel.find({_id:res.locals.userObj._id}).update({$push:{boards:result._id}});
+    // console.log(user)
+    // console.log(result);
     res.status(201).json({
         result:result
     })
