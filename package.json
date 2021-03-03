@@ -29,7 +29,7 @@
     "mongodb": "^3.3.0-beta2",
     "mongoose": "^5.6.7",
     "nodemailer": "^6.3.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "pug-cli": "^1.0.0-alpha6",
     "reactive-handlebars": "0.0.7",
     "stripe": "^7.10.0",
